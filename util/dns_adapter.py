@@ -1,6 +1,6 @@
 from urllib.parse import urlparse, ParseResult
 from requests.adapters import HTTPAdapter
-from dns.resolver import Resolver
+from dns.resolver import Resolver, NXDOMAIN
 
 
 class HostHeaderSSLAdapter(HTTPAdapter):
@@ -8,10 +8,13 @@ class HostHeaderSSLAdapter(HTTPAdapter):
         dns_resolver = Resolver()
         dns_resolver.nameservers = [
             '208.67.222.222',  # OpenDNS
-            '8.8.8.8'          # Google
+            # '8.8.8.8'          # Google
         ]
+        try:
+            answers = dns_resolver.resolve(host, 'A')
+        except NXDOMAIN:
+            return host
 
-        answers = dns_resolver.resolve(host, 'A')
         for rdata in answers:
             return str(rdata)
 
