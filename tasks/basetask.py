@@ -10,11 +10,22 @@ from util.dns_adapter import HostHeaderSSLAdapter
 class BaseTask:
     def __init__(self):
         self.client = requests.session()
-        self.headers = {
+        self._headers = {
 
         }
 
         self.client.mount('https://', HostHeaderSSLAdapter())
+        print('Mounting HostHeaderSSLAdapter')
+
+    @property
+    def headers(self):
+        return self._headers
+
+    @headers.setter
+    def headers(self, value):
+        self._headers = value
+        self.client.headers = self._headers
+        print(self._headers)
 
     def start(self):
         pass

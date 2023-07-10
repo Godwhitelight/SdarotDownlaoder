@@ -7,8 +7,8 @@ class HostHeaderSSLAdapter(HTTPAdapter):
     def resolve(self, host):
         dns_resolver = Resolver()
         dns_resolver.nameservers = [
-            '208.67.222.222',  # OpenDNS
-            # '8.8.8.8'          # Google
+            # '208.67.222.222',  # OpenDNS
+            '8.8.8.8'          # Google
         ]
         try:
             answers = dns_resolver.resolve(host, 'A')
