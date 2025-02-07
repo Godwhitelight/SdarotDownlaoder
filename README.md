@@ -1,3 +1,8 @@
+> [!NOTE]
+> Sdarot and Straim TV have sized existing after the Israeli ZIRA Organization caused the deletion of the data and backups of the site.
+> Because of that this project will not have a use anymore and will be archived.
+
+
 # SdarotDownlaoder
  Sdarot/Sratim(SOON) TV downloader.
 
